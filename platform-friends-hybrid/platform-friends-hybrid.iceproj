@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>30ad3c6d-5200-4166-8fa0-71cd89b6977b</ProjectGuid>
+    <ProjectTypeGuids>{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include=".abignore" />
+    <Content Include=".abproject" />
+    <Content Include=".debug.abproject" />
+    <Content Include=".release.abproject" />
+    <Content Include="bower_components\everlive\.bower.json">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\.gitattributes">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\min\everlive.all.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\min\everlive.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\min\expandProcessor.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\min\jstimezonedetect.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\min\mingo.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\min\mongoQuery.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\min\reqwest.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\min\rsvp.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\min\underscore.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\min\uuid.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\src\everlive.all.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\src\everlive.debug.all.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\src\everlive.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\src\expandProcessor.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\src\jstimezonedetect.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\src\mingo.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\src\mongoQuery.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\src\reqwest.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\src\rsvp.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\src\underscore.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="bower_components\everlive\src\uuid.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="cordova.android.js" />
+    <Content Include="cordova.ios.js" />
+    <Content Include="cordova.wp8.js" />
+    <Content Include="index.html" />
+    <Content Include="kendo\js\jquery.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\js\kendo.mobile.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\styles\images\back.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\styles\images\kendoui.svg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\styles\images\kendoui.ttf">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\styles\images\kendoui.woff">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\styles\images\wp8_icons.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\styles\images\wp8_inverseicons.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="kendo\styles\kendo.mobile.all.min.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\app\activities.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\app\activity.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\app\add-activity.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\app\add-comment.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\app\analytics-monitor.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\app\app.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\app\comments.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\app\identity-provider.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\app\login.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\app\settings.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\app\signup.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="scripts\app\users.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\avatar.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\background-picture.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\default-image.jpg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-arrow%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-arrow.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-arrow_dark%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-arrow_dark.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-comment%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-comment.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-delete%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\icon-delete.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\logo-adfs%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\logo-adfs.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\logo-facebook%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\logo-facebook.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\logo-friends%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\logo-friends.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\logo-google%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\logo-google.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\logo-windows%402x.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\images\logo-windows.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="styles\main.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\activitiesView.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\activityView.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\addActivityView.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\addCommentView.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\noApiKey.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\signupView.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Resource Include="App_Resources\Android\drawable-hdpi\icon.png" />
+    <Resource Include="App_Resources\Android\drawable-ldpi\icon.png" />
+    <Resource Include="App_Resources\Android\drawable-mdpi\icon.png" />
+    <Resource Include="App_Resources\Android\drawable-nodpi\splashscreen.9.png" />
+    <Resource Include="App_Resources\iOS\Default-568h@2x.png" />
+    <Resource Include="App_Resources\iOS\Default-667h.png" />
+    <Resource Include="App_Resources\iOS\Default-736h.png" />
+    <Resource Include="App_Resources\iOS\Default-Landscape-667h.png" />
+    <Resource Include="App_Resources\iOS\Default-Landscape-736h.png" />
+    <Resource Include="App_Resources\iOS\Default-Landscape.png" />
+    <Resource Include="App_Resources\iOS\Default-Landscape@2x.png" />
+    <Resource Include="App_Resources\iOS\Default-Portrait.png" />
+    <Resource Include="App_Resources\iOS\Default-Portrait@2x.png" />
+    <Resource Include="App_Resources\iOS\Default.png" />
+    <Resource Include="App_Resources\iOS\Default@2x.png" />
+    <Resource Include="App_Resources\iOS\icon-40.png" />
+    <Resource Include="App_Resources\iOS\icon-40@2x.png" />
+    <Resource Include="App_Resources\iOS\Icon-40@3x.png" />
+    <Resource Include="App_Resources\iOS\icon-60.png" />
+    <Resource Include="App_Resources\iOS\icon-60@2x.png" />
+    <Resource Include="App_Resources\iOS\Icon-60@3x.png" />
+    <Resource Include="App_Resources\iOS\icon-72.png" />
+    <Resource Include="App_Resources\iOS\icon-72@2x.png" />
+    <Resource Include="App_Resources\iOS\icon-76.png" />
+    <Resource Include="App_Resources\iOS\icon-76@2x.png" />
+    <Resource Include="App_Resources\iOS\Icon-Small-50.png" />
+    <Resource Include="App_Resources\iOS\Icon-Small-50@2x.png" />
+    <Resource Include="App_Resources\iOS\Icon-Small.png" />
+    <Resource Include="App_Resources\iOS\Icon-Small@2x.png" />
+    <Resource Include="App_Resources\iOS\icon.png" />
+    <Resource Include="App_Resources\iOS\icon@2x.png" />
+    <Resource Include="App_Resources\WP8\ApplicationIcon.png" />
+    <Resource Include="App_Resources\WP8\SplashScreenImage.jpg" />
+    <Resource Include="App_Resources\WP8\Assets\BadgeLogo.png" />
+    <Resource Include="App_Resources\WP8\Assets\Logo.png" />
+    <Resource Include="App_Resources\WP8\Assets\SplashScreen.png" />
+    <Resource Include="App_Resources\WP8\Assets\SquareTile150x150.png" />
+    <Resource Include="App_Resources\WP8\Assets\SquareTile71x71.png" />
+    <Resource Include="App_Resources\WP8\Assets\StoreLogo.png" />
+    <Resource Include="App_Resources\WP8\Assets\WideLogo.png" />
+    <Resource Include="App_Resources\WP8\Tiles\Iconic\110x110.png" />
+    <Resource Include="App_Resources\WP8\Tiles\Iconic\202x202.png" />
+    <Content Include="css\index.css" />
+    <Content Include="img\cordova.png" />
+    <Content Include="img\logo.png" />
+    <Content Include="js\index.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Resources\" />
+    <Folder Include="App_Resources\Android\" />
+    <Folder Include="App_Resources\Android\drawable-hdpi\" />
+    <Folder Include="App_Resources\Android\drawable-ldpi\" />
+    <Folder Include="App_Resources\Android\drawable-mdpi\" />
+    <Folder Include="App_Resources\Android\drawable-nodpi\" />
+    <Folder Include="App_Resources\iOS\" />
+    <Folder Include="App_Resources\WP8\" />
+    <Folder Include="App_Resources\WP8\Assets\" />
+    <Folder Include="App_Resources\WP8\Tiles\" />
+    <Folder Include="App_Resources\WP8\Tiles\Iconic\" />
+    <Folder Include="bower_components\" />
+    <Folder Include="bower_components\everlive\" />
+    <Folder Include="bower_components\everlive\min\" />
+    <Folder Include="bower_components\everlive\src\" />
+    <Folder Include="css\" />
+    <Folder Include="img\" />
+    <Folder Include="js\" />
+    <Folder Include="kendo\" />
+    <Folder Include="kendo\js\" />
+    <Folder Include="kendo\styles\" />
+    <Folder Include="kendo\styles\images\" />
+    <Folder Include="kendo\typescript\" />
+    <Folder Include="Plugins\" />
+    <Folder Include="scripts\" />
+    <Folder Include="scripts\app\" />
+    <Folder Include="styles\" />
+    <Folder Include="styles\images\" />
+    <Folder Include="views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="kendo\typescript\jquery.d.ts" />
+    <TypeScriptCompile Include="kendo\typescript\kendo.mobile.d.ts" />
+  </ItemGroup>
+  <Import Project="$(IceniumTargets)Build.targets" />
+  <!--
+    TODO: Uncomment this code if you need to customize the build process.
+    <Target Name="BeforeBuild">
+        <Message Text="TODO: Implement BeforeBuild" Importance="high" />
+    </Target>
+
+    <Target Name="AfterBuild">
+        <Message Text="TODO: Implement AfterBuild" Importance="high" />
+    </Target>
+    -->
+</Project>
