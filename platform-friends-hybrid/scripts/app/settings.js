@@ -5,17 +5,17 @@
 var appSettings = {
 
     everlive: {
-        apiKey: '$EVERLIVE_API_KEY$', // Put your Backend Services API key here
+        apiKey: '#{EVERLIVE_API_KEY}', // Put your Backend Services API key here
         scheme: 'http'
     },
 
     eqatec: {
-        productKey: '$EQATEC_PROJECT_KEY$',  // Put your Tekerik Analytics project key here
+        productKey: '#{EQATEC_PROJECT_KEY}',  // Put your Tekerik Analytics project key here
         version: '1.0.0.0' // Put your application version here
     },
     
     feedback: {
-        apiKey: '$APPFEEDBACK_API_KEY$'  // Put your AppFeedback API key here
+        apiKey: '#{APPFEEDBACK_API_KEY}'  // Put your AppFeedback API key here
     },
 
     facebook: {
@@ -34,8 +34,8 @@ var appSettings = {
     },
 
     adfs: {
-        adfsRealm: '$ADFS_REALM$', // Put your ADFS Realm here
-        adfsEndpoint: '$ADFS_ENDPOINT$' // Put your ADFS Endpoint here
+        adfsRealm: '#{ADFS_REALM}', // Put your ADFS Realm here
+        adfsEndpoint: '#{ADFS_ENDPOINT}' // Put your ADFS Endpoint here
     },
 
     messages: {
