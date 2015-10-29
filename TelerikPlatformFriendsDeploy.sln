@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{A81B4A23-AF18-4B01-8944-84D6FB3D4B47}") = "platform-friends-hybrid", "platform-friends-hybrid\platform-friends-hybrid.iceproj", "{30AD3C6D-5200-4166-8FA0-71CD89B6977B}"
+Project("{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}") = "platform-friends-hybrid", "platform-friends-hybrid\platform-friends-hybrid.iceproj", "{30AD3C6D-5200-4166-8FA0-71CD89B6977B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>platform-friends-hybrid</id>
+    <version>0.0.0</version>
+    <title>platform-friends-hybrid deployment package</title>
+    <authors>Hosted Solutions Pty Ltd</authors>
+    <owners>Hosted Solutions Pty Ltd</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>platform-friends-hybrid deployment package</description>
+    <summary>platform-friends-hybrid deployment package</summary>
+    <releaseNotes />
+    <copyright>Copyright © Hosted Solutions Pty Ltd 2015</copyright>
+    <language>en-US</language>
+  </metadata>
+  <files>
+    <file src="\**\*.*" />
+    <file src=".abproject" />
+    <file src=".debug.abproject" />
+    <file src=".release.abproject" />
+  </files>
+</package>

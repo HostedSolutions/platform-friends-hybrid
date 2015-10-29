@@ -125,6 +125,8 @@
     <Content Include="kendo\styles\kendo.mobile.all.min.css">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="packages.config" />
+    <Content Include="platform-friends-hybrid.nuspec" />
     <Content Include="scripts\app\activities.js">
       <SubType>Content</SubType>
     </Content>
@@ -328,6 +330,11 @@
     <TypeScriptCompile Include="kendo\typescript\kendo.mobile.d.ts" />
   </ItemGroup>
   <Import Project="$(IceniumTargets)Build.targets" />
+  <Import Project="..\Packages\OctoPack.3.0.42\tools\OctoPack.targets" Condition="Exists('..\..\NuGetPackages\OctoPack.3.0.42\tools\OctoPack.targets')" />
+  <Target Name="EnsureOctoPackImported" BeforeTargets="BeforeBuild" Condition="'$(OctoPackImported)' == ''">
+    <Error Condition="!Exists('..\Packages\OctoPack.3.0.42\tools\OctoPack.targets') And ('$(RunOctoPack)' != '' And $(RunOctoPack))" Text="You are trying to build with OctoPack, but the NuGet targets file that OctoPack depends on is not available on this computer. This is probably because the OctoPack package has not been committed to source control, or NuGet Package Restore is not enabled. Please enable NuGet Package Restore to download them. For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\Packages\OctoPack.3.0.42\tools\OctoPack.targets') And ('$(RunOctoPack)' != '' And $(RunOctoPack))" Text="OctoPack cannot be run because NuGet packages were restored prior to the build running, and the targets file was unavailable when the build started. Please build the project again to include these packages in the build. You may also need to make sure that your build server does not delete packages prior to each build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
   <!--
     TODO: Uncomment this code if you need to customize the build process.
     <Target Name="BeforeBuild">
