@@ -29,7 +29,7 @@ $GroupCmd=$GroupCmd.Replace("  "," ").Replace("  "," ")
 
 # Setup Push message command
 $SendPushCmd=" --send-push"
-if($DisableSendPush="True")
+if($DisableSendPush -eq "True")
 {
 $SendPushCmd=""
 }

@@ -1,0 +1,82 @@
+{
+  "Id": "ActionTemplates-20",
+  "Name": "Deploy Telerik Platform",
+  "Description": "Used to deploy teleirk platform apps",
+  "ActionType": "Octopus.Script",
+  "Version": 0,
+  "Properties": {
+    "Octopus.Action.Script.Syntax": "PowerShell",
+    "Octopus.Action.Script.ScriptBody": "#=================================\r\n#\r\n# == TELERIK PLATFORM DEPLOY ==\r\n#\r\n#=================================\r\n# List of varibles\r\n#$TelerikUserName\r\n#$TelerikPassword\r\n#$AndriodCertID\r\n#$iOSCertID\r\n#$iOSProvitionID\r\n#$GroupAccessList \r\n#$DisableSendPush\r\n\r\n#$currentstepname        \r\n#$OctopusProjectName     \r\n#$parentLocation         \r\n#$OctopusEnvironmentName \r\n#=================================\r\n\r\n$currentstepname        = $OctopusParameters[\"Octopus.Step[0].Package.NuGetPackageId\"]\r\n$OctopusProjectName     = $OctopusParameters[\"Octopus.Project.Name\"]\r\n$parentLocation         = $OctopusParameters[\"Octopus.Action[$currentstepname].Output.Package.InstallationDirectoryPath\"]\r\n$OctopusEnvironmentName = $OctopusParameters[\"Octopus.Environment.Name\"]\r\n\r\n# Setup Group Command\r\n$GroupCmd =\" --group \" + $GroupAccessList.Replace(\",\",\" --group \");\r\n$GroupCmd=$GroupCmd.Replace(\"  \",\" \").Replace(\"  \",\" \")\r\n\r\n# Setup Push message command\r\n$SendPushCmd=\" --send-push\"\r\nif($DisableSendPush -eq \"True\")\r\n{\r\n$SendPushCmd=\"\"\r\n}\r\n\r\n#Check Varibles\r\nWrite-host \"currentstepname `t= $currentstepname\"\r\nWrite-host \"OctopusProjectName `t= $OctopusProjectName\"\r\nWrite-host \"parentLocation `t`t= $parentLocation\"\r\nWrite-host \"OctopusEnvironmentName `t= $OctopusEnvironmentName\"\r\n\r\nCD $parentLocation; get-location\r\n\r\n$Path = Get-Location; Write-Host \"Run Script from   $Path\"\r\n$AppData = $env:APPDATA \r\n\r\n# Grab JSON form the project file\r\n$JSON = (Get-Content \"$parentLocation\\.abproject\" -Raw) | ConvertFrom-Json; \r\n\r\n#Write out Old values\r\nWrite-Host \"`n---------------------------`nShow Old value in JSON file`n---------------------------\"\r\n$JSON_ProjectName   = $JSON.ProjectName;   Write-host \"ProjectName `t= $JSON_ProjectName\"\r\n$JSON_AppIdentifier = $JSON.AppIdentifier; Write-host \"AppIdentifier `t= $JSON_AppIdentifier\"\r\n$JSON_DisplayName   = $JSON.DisplayName;   Write-host \"DisplayName `t= $JSON_DisplayName\"\r\n$JSON_BundleVersion = $JSON.BundleVersion; Write-host \"BundleVersion `t= $JSON_BundleVersion\"\r\n\r\n#Write out values that will be used in file\r\nWrite-Host \"`n---------------------------`nShow value it will Replacement to JSON file`n---------------------------\"\r\nWrite-host \"ProjectName `t= $ProjectName `t<from Octopus Variable>\"\r\nWrite-host \"AppIdentifier `t= $AppIdentifier `t<from Octopus Variable>\"\r\nWrite-host \"DisplayName `t= $DisplayName `t<from Octopus Variable>\"\r\nWrite-host \"BundleVersion `t= $OctopusReleaseNumber `t<from Octopus Release Number>\"\r\n\r\n# Set values in object\r\n$JSON.ProjectName   = $ProjectName;  \r\n$JSON.AppIdentifier = $AppIdentifier; \r\n$JSON.DisplayName   = $DisplayName;\r\n$JSON.BundleVersion = $OctopusReleaseNumber; \r\n\r\n#Write back to file\r\nget-location\r\nWrite-Host \"'$JSON' | ConvertTo-Json | Set-Content \"$parentLocation\\.abproject\"\"\r\n$JSON | ConvertTo-Json | Set-Content \"$parentLocation\\.abproject\"\r\n\r\n#Run update on appBuilder, if its not he altest version it will fail     \r\nWrite-Host \"`n-----------------------------------------------------------`nupdate to the latest version of the Telerik AppBuilder CLI`n-----------------------------------------------------------\"\r\nCMD /C C:\\\"Program Files (x86)\"\\nodejs\\npm update -g appbuilder; $LASTEXITCODE\r\n\r\n# Login to teleirk platform\r\nWrite-Host \"`n---------------------`nConnecting to telerik`n---------------------\"\r\nCMD /C $APPDATA\\npm\\appbuilder dev-telerik-login $TelerikUserName $TelerikPassword       IF ($LASTEXITCODE -ne 0) { Write-Error \"Error\"}\r\nWrite-Host \"`n---------------------`nConnected to telerik`n---------------------\"\r\nCMD /C $APPDATA\\npm\\appbuilder user\r\n\r\n# Write out all available groups\r\nWrite-Host \"`n-----------------`nAppmanager Groups`n-----------------\"\r\n$groups = CMD /C $APPDATA\\npm\\appbuilder appmanager groups;\r\n$groupsCutLine = $groups[3..($groups.count - 2)]\r\n$groupsCutLine | Foreach-object {$_ -replace \"â`”‚\", \"\" }\r\n\r\n#Write out all available Certs\r\nWrite-Host \"`n------------------------------------------------------------------------------------------------------`nLists all configured certificates for code signing iOS and Android applications with index and name.`n------------------------------------------------------------------------------------------------------\"\r\n$certificate = CMD /C $APPDATA\\npm\\appbuilder certificate; $certificate\r\n\r\n#Write out all avialable provisioning profiles\r\nWrite-Host \"`n------------------------------------------------------------------------------------------------------`nLists all configured provisioning profiles for code signing iOS applications with index and name.`n------------------------------------------------------------------------------------------------------\"\r\n$provision   = CMD /C $APPDATA\\npm\\appbuilder provision;   $provision\r\n\r\n# Run Android Upload\r\nWrite-Host \"`n--------------------------------------------------`nappbuilder appmanager upload android to Developers`n--------------------------------------------------\"\r\nCMD /C $APPDATA\\npm\\appbuilder appmanager upload android --certificate $AndriodCertID --publish --send-push $GroupCmd;$LASTEXITCODE;IF ($LASTEXITCODE -ne 0) { Write-Error \"error\"}\r\n# Run iOS Deploy\r\nWrite-Host \"`n----------------------------------------------`nappbuilder appmanager upload iOS to Developers`n----------------------------------------------\"\r\nCMD /C $APPDATA\\npm\\appbuilder appmanager upload ios     --certificate $iOSCertID --provision $iOSProvitionID --publish $SendPushCmd $GroupCmd;$LASTEXITCODE;IF ($LASTEXITCODE -ne 0) { Write-Error \"error\"}\r\n\r\n#Run Logout\r\nCMD /C $APPDATA\\npm\\appbuilder logout; $LASTEXITCODE"
+  },
+  "SensitiveProperties": {},
+  "Parameters": [
+    {
+      "Name": "TelerikUserName",
+      "Label": "Telerik User Name",
+      "HelpText": "The username you sue to login to the telerik platform, make sure this is the user that has the Certificates and provisioning profiles setup.",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Name": "TelerikPassword",
+      "Label": "Telerik Password",
+      "HelpText": "The password you use to login to the telerik platform",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Name": "AndriodCertID",
+      "Label": "Andriod Certificate ID",
+      "HelpText": "The ID of the Android certificate that you want to sign you Apps with",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Name": "iOSCertID",
+      "Label": "iOS Certificate ID",
+      "HelpText": "The Apple certificate that you want to sign you iOS apps with",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Name": "iOSProvitionID",
+      "Label": "iOS Provitioning ID",
+      "HelpText": "The ID of the Provisioning Profile Saved in telerik platform that you want to use for your iOS apps",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Name": "GroupAccessList",
+      "Label": "Group Access List",
+      "HelpText": "A coma separated list of group IDs that you want to have access to this deployment once in telerik platform",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    },
+    {
+      "Name": "DisableSendPush",
+      "Label": "Disable Send Push Notifciaiton",
+      "HelpText": "if set to \"True\", a push notificaiton will not be sent to the user once the deploy is complete",
+      "DefaultValue": null,
+      "DisplaySettings": {
+        "Octopus.ControlType": "SingleLineText"
+      }
+    }
+  ],
+  "$Meta": {
+    "ExportedAt": "2015-10-29T11:48:43.527Z",
+    "OctopusVersion": "3.0.5.2124",
+    "Type": "ActionTemplate"
+  }
+}
